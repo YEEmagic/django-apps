@@ -5,7 +5,7 @@ from .models import Question, Answer
 from django.http import HttpResponseNotAllowed
 from .forms import QuestionForm, AnswerForm
 
-# def index(request):f
+# def index(request):
 #     return HttpResponse("안녕하세요, pybo에 오신 것을 환영합니다.")
 
 def index(request):
@@ -31,13 +31,14 @@ def answer_create(request, question_id):
             answer.create_date = timezone.now()
             answer.question = question
             answer.save()
-            return redirect('pybo:detail', question_id=question_id)
-        else: return HttpResponseNotAllowed('Only POST is possible.')
+            return redirect('pybo:detail', question_id=question.id)
+        else:
+            return HttpResponseNotAllowed('Only POST is possible.')
         context = {'question': question, 'form': form }
         return render(request, 'pybo/question_detaiol.html', context)
     # answer = Answer(question=question, content=request.POST.get('content'), create_date=timezone.now())
-    question.answer_set.create(content=request.POST.get('content'), create_date=timezone.now())
-    return redirect('pybo:detail', question_id=question.id)
+    # question.answer_set.create(content=request.POST.get('content'), create_date=timezone.now())
+    # return redirect('pybo:detail', question_id=question.id)
 
 def question_create(request):
     if request.method == 'POST':
