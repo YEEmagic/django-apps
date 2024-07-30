@@ -5,7 +5,7 @@ from .models import Question, Answer
 from django.http import HttpResponseNotAllowed
 from .forms import QuestionForm, AnswerForm
 
-# def index(request):
+# def index(request):f
 #     return HttpResponse("안녕하세요, pybo에 오신 것을 환영합니다.")
 
 def index(request):
