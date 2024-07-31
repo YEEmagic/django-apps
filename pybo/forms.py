@@ -10,8 +10,8 @@ class QuestionForm(forms.ModelForm):
         #     'content' : forms.Textarea(attrs={'class' : 'form-control', 'rows':10}),
         # }
         labels = {
-            'subject' : '제목',
-            'content' : '내용',
+            'subject': '제목',
+            'content': '내용',
         }
 
 class AnswerForm(forms.ModelForm):
