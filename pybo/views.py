@@ -4,13 +4,18 @@ from django.utils import timezone
 from .models import Question, Answer
 from django.http import HttpResponseNotAllowed
 from .forms import QuestionForm, AnswerForm
+from django.core.paginator import Paginator
 
 # def index(request):
 #     return HttpResponse("안녕하세요, pybo에 오신 것을 환영합니다.")
 
 def index(request):
+    page = request.GET.get('page', '1') # 페이지
     question_list = Question.objects.order_by('-create_date') # -가 앞에 붙으면 역순으로 정렬이다.
-    context = {'question_list' : question_list}
+    paginator = Paginator(question_list, 10) # 페이지당 10개씩 보여주기
+    page_obj = paginator.get_page(page)
+    context = {'question_list': page_obj}
+    # (question_list >>> page_obj와 바뀜) context = {'question_list' : question_list}
     return render(request, 'pybo/question_list.html', context)
     # render 함수: python 데이터를 템플릿에 적용해 HTML로 반환하는 함수이다.
     # 질문 목록으로 생성한 question_list 데이터를 /../question_list.html 파일에 적용해 HTML을 생성한 후 리턴한다.
