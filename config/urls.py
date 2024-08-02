@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #path('pybo/', views.index),
     path('pybo/', include('pybo.urls')),
+    path('common/', include('common.urls')), # common 으로 시작하는 url은 모두 common/urls.py 를 참조할 것이다.
 ]
